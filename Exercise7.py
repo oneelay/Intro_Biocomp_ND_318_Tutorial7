@@ -45,7 +45,10 @@ os.chdir('C:\\Users\\joshu\\OneDrive\\github\\BioComp\\Intro_Biocomp_ND_318_Tuto
         #get results
     #L1.append(result)
 #You want to keep all your list equal in length, so they line up. So you want to append to each list each time
-
+#Stuarts append code, line 38
+ #if '>' in Line:
+        # add the sequence ID (except the ">" character) to the sequenceID list
+       # sequenceID.append(Line[1:])   #So this is grabbing the line from 1 over, skipping 0 which is the >
 
 #EXERCISE PART 2
 
