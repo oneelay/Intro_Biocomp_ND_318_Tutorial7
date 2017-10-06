@@ -1,7 +1,7 @@
 #Import Stuff
 import os
-import pandas
-import numpy
+import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import scipy
 from plotnine import *
@@ -18,13 +18,13 @@ os.chdir('C:\\Users\\joshu\\OneDrive\\github\\BioComp\\Intro_Biocomp_ND_318_Tuto
     #if ">" in line:
         #capture sequence id
     #else next line:
-#Length
-    #get length of line
-#% GC
-    #count Gs
-    #count Cs
+#2 Length
+    #get length of line: float(len(line))
+#3 % GC
+    #count Gs: line.count("G")
+    #count Cs: line count("C")
     # Calc % GC (#G+c/length)
-#Melting Temp
+#4 Melting Temp
     #if length <=14:
         #calc melt temp
     #else:
