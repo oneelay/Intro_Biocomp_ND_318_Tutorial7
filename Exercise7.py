@@ -31,3 +31,6 @@ os.chdir('C:\\Users\\joshu\\OneDrive\\github\\BioComp\\Intro_Biocomp_ND_318_Tuto
         #-9999 (because instructions said so)
 #summarize stored info
 
+#EXERCISE PART 2
+
+
