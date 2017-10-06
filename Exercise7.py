@@ -31,6 +31,22 @@ os.chdir('C:\\Users\\joshu\\OneDrive\\github\\BioComp\\Intro_Biocomp_ND_318_Tuto
         #-9999 (because instructions said so)
 #summarize stored info
 
+#some notes on the above, functions, etc 
+#InFile=open("filename",_) #'r'->read file, 'w'-> write file #example OutFile=open('fn','w')
+#Infile.close() (each element of the file becomes a list)
+    #for line in InFile:
+        #line=line.strip() #will remove the \n, so you have a string. Default of strip is \n, you can strip out other characers
+        
+#OutFile.close()
+
+#notes on list in python
+#L1 = [] *starts an empty list
+    #done some calcs
+        #get results
+    #L1.append(result)
+#You want to keep all your list equal in length, so they line up. So you want to append to each list each time
+
+
 #EXERCISE PART 2
 
 
