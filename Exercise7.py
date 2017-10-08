@@ -4,52 +4,64 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy
-from plotnine import *
-#Set JSH WD
-os.chdir('C:\\Users\\joshu\\OneDrive\\github\\BioComp\\Intro_Biocomp_ND_318_Tutorial7\\')
-#reference lecture 11 and lecture 11 fasta
-#Part1
-#sudo code:
-#import packages
-#read in the fasta file (four things below)
-#plan for storing info
-#1 sequence ID, sequence length, % GC, Melting temp
-#for loop (to collect ID, > is the header line vs a sequencel line)
-    #if ">" in line:
-        #capture sequence id
-    #else next line:
-#2 Length
-    #get length of line: float(len(line))
-#3 % GC
-    #count Gs: line.count("G")
-    #count Cs: line count("C")
-    # Calc % GC (#G+c/length)
-#4 Melting Temp
-    #if length <=14:
-        #calc melt temp
-    #else:
-        #-9999 (because instructions said so)
-#summarize stored info
 
-#some notes on the above, functions, etc 
-#InFile=open("filename",_) #'r'->read file, 'w'-> write file #example OutFile=open('fn','w')
-#Infile.close() (each element of the file becomes a list)
-    #for line in InFile:
-        #line=line.strip() #will remove the \n, so you have a string. Default of strip is \n, you can strip out other characers
-        
-#OutFile.close()
+#Set JSH WD and plot nine
+#os.chdir('C:\\Users\\joshu\\OneDrive\\github\\BioComp\\Intro_Biocomp_ND_318_Tutorial7\\')
+#from plotnine import *
 
-#notes on list in python
-#L1 = [] *starts an empty list
-    #done some calcs
-        #get results
-    #L1.append(result)
-#You want to keep all your list equal in length, so they line up. So you want to append to each list each time
-#Stuarts append code, line 38
- #if '>' in Line:
+#Set Om WD and plotnine
+os.chdir('/Users/omneelay/Desktop/Exercise7/Intro_Biocomp_ND_318_Tutorial7/')
+!pip install plotnine
+
+#PART 1
+
+# open fasta file
+InFile=open("Lecture11.fasta","r")
+
+sequenceID=[]
+sequenceLength=[]
+percentGC=[]
+
+for Line in InFile:
+    # remove newline character from file line
+    Line=Line.strip()
+    # if a sequence record
+    if '>' in Line:
         # add the sequence ID (except the ">" character) to the sequenceID list
-       # sequenceID.append(Line[1:])   #So this is grabbing the line from 1 over, skipping 0 which is the >
+        sequenceID.append(Line[1:])
+    # if a sequence line
+    else:
+        # get the number of characters in the sequence and convert to a float to avoid integer division
+        seqLen=float(len(Line))
+        # count the number of G's and C's
+        nG=Line.count("G")
+        nC=Line.count("C")
+        # append values to the lists
+        sequenceLength.append(seqLen)
+        percentGC.append((nG+nC)/seqLen*100)
 
-#EXERCISE PART 2
+# close file
+InFile.close()
+
+#Histogram of Seq Length
+plt.hist(sequenceLength)
+plt.title("Histogram of Sequence Length")
+plt.show()
+
+#Histogram of GC Content
+plt.hist(percentGC)
+plt.title("Histogram of GC Content")
+plt.show()
 
 
+#PART 2
+#pseudocode is below
+#Get data, make into 2 columns
+#Read data into python
+#create data frame with the data
+#Plot the data as a scatter plot and add trendline
+    #pylab.plot(x,y,'o')
+    #z = numpy.polyfit(x, y, 1)
+    #p = numpy.poly1d(z)
+    #pylab.plot(x,p(x),"r--")
+    
