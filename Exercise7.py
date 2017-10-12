@@ -65,19 +65,42 @@ df=pd.DataFrame(PatsWL, columns=['Month', 'WinLoss'])
 df0=pd.DataFrame(data=[0,0,0])
 df0=df0.T
 df0.columns=['Month', 'Wins', 'Losses']
-frames=[df0,df]
-df=pd.concat(frames)
 #for loop to count
+SeptW=0
+OctW=0
+NovW=0
+DecW=0
+SeptL=0
+OctL=0
+NovL=0
+DecL=0
 for row in range(0,len(PatsWL)): 
-#if row is W, append to Wins column
-#else append to Lossses Column
-    if PatsWL.iloc[row,1] == "W":
-        df.iloc[row+1,1] = df.iloc[row,1] + PatsWL.iloc[row,2]
-        df.iloc[row+1,2] = df.iloc[row,2]
-    elif PatsWL.iloc[row,1] == "L":
-        df.iloc[row+1,2] = df.iloc[row,2] + PatsWL.iloc[row,2]
-        df.iloc[row+1,1] = df.iloc[row,1]
-plt.plot(df.Month,df.Wins,'r-',df.Month,df.Losses,'g-')        
+    if PatsWL.iloc[row,0] == "Sept":
+        if PatsWL.iloc[row,1] == 'W':
+            SeptW = SeptW+1
+        elif PatsWL.iloc[row,1] == 'L':
+            SeptL = SeptL+1
+    elif PatsWL.iloc[row,0] == "Oct":
+        if PatsWL.iloc[row,1] == 'W':
+            OctW = OctW+1
+        elif PatsWL.iloc[row,1] == 'L':
+            OctL = OctL+1 
+    elif PatsWL.iloc[row,0] == "Nov":
+        if PatsWL.iloc[row,1] == 'W':
+            NovW = NovW+1
+        elif PatsWL.iloc[row,1] == 'L':
+            NovL = NovL+1 
+    elif PatsWL.iloc[row,0] == "Dec":
+        if PatsWL.iloc[row,1] == 'W':
+            DecW = DecW+1
+        elif PatsWL.iloc[row,1] == 'L':
+            DecL = DecL+1 
+
+WL=pd.DataFrame(np.array([SeptW, SeptL, OctW, OctL, NovW, NovL, DecW, DecL]).reshape((4,2)),columns=['Wins', 'Loses'])
+WL['Month']=['Sept', 'Oct', 'Nov', 'Dec']
+
+
+  
 
 
 #df.groupby(["Month", "WinLoss"]).size
@@ -97,4 +120,16 @@ pd.Series((df.words.str.contains(r).sum() for r in word_regexs), word_regexs, na
     #z = numpy.polyfit(x, y, 1)
     #p = numpy.poly1d(z)
     #pylab.plot(x,p(x),"r--")
+    
+    
+
+#PART 3
+Data=pd.read_csv("data.txt", sep=',')
+#calculate mean of all four population        
+northaverage = Data.loc[Data['region'] == 'north', 'observations'].sum()/Data.loc[Data['region'] == 'north', 'observations'].count()
+southaverage = Data.loc[Data['region'] == 'south', 'observations'].sum()/Data.loc[Data['region'] == 'south', 'observations'].count()
+eastaverage = Data.loc[Data['region'] == 'east', 'observations'].sum()/Data.loc[Data['region'] == 'east', 'observations'].count()
+westaverage = Data.loc[Data['region'] == 'west', 'observations'].sum()/Data.loc[Data['region'] == 'west', 'observations'].count()
+#create barplot
+#creat scatter plot using (geom_jitter()) to show observations within the populations
     
