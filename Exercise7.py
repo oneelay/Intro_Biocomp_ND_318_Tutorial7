@@ -6,12 +6,12 @@ import matplotlib.pyplot as plt
 import scipy
 
 #Set JSH WD and plot nine
-#os.chdir('C:\\Users\\joshu\\OneDrive\\github\\BioComp\\Intro_Biocomp_ND_318_Tutorial7\\')
-#from plotnine import *
+os.chdir('C:\\Users\\joshu\\OneDrive\\github\\BioComp\\Intro_Biocomp_ND_318_Tutorial7\\')
+from plotnine import *
 
 #Set Om WD and plotnine
-os.chdir('/Users/omneelay/Desktop/Exercise7/Intro_Biocomp_ND_318_Tutorial7/')
-!pip install plotnine
+#os.chdir('/Users/omneelay/Desktop/Exercise7/Intro_Biocomp_ND_318_Tutorial7/')
+#!pip install plotnine
 
 #PART 1
 
@@ -57,6 +57,7 @@ plt.show()
 #PART 2
 #pseudocode is below
 #Get data, make into 2 columns
+
 #Read data into python
 #create data frame with the data
 #Plot the data as a scatter plot and add trendline
