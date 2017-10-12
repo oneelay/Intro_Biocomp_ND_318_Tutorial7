@@ -61,10 +61,6 @@ plt.show()
 #Get data, make into 2 columns
 #Read data into python
 PatsWL=pd.read_csv("data2.csv", sep='\t')
-df=pd.DataFrame(PatsWL, columns=['Month', 'WinLoss'])
-df0=pd.DataFrame(data=[0,0,0])
-df0=df0.T
-df0.columns=['Month', 'Wins', 'Losses']
 #for loop to count
 SeptW=0
 OctW=0
@@ -96,32 +92,15 @@ for row in range(0,len(PatsWL)):
         elif PatsWL.iloc[row,1] == 'L':
             DecL = DecL+1 
 
-WL=pd.DataFrame(np.array([SeptW, SeptL, OctW, OctL, NovW, NovL, DecW, DecL]).reshape((4,2)),columns=['Wins', 'Loses'])
+WL=pd.DataFrame(np.array([SeptW, SeptL, OctW, OctL, NovW, NovL, DecW, DecL]).reshape((4,2)),columns=['Wins', 'Losses'])
 WL['Month']=['Sept', 'Oct', 'Nov', 'Dec']
-
-
-  
-
-
-#df.groupby(["Month", "WinLoss"]).size
-#count=df["WinLoss"].value_counts()
-#Win = []
-#Loss = []
-df['WinLoss'].value_counts()
-df['WinLoss'].value_counts().tolist()
-#df.WinLoss.str.count(substr)
-#WinLoss.str.contains(r'[W]')
-#df.WinLoss.str.contains(r'[W]')
-word_regexs=[r'W',r'L']
-pd.Series((df.words.str.contains(r).sum() for r in word_regexs), word_regexs, name='count')
-#create data frame with the data
 #Plot the data as a scatter plot and add trendline
     #pylab.plot(x,y,'o')
     #z = numpy.polyfit(x, y, 1)
     #p = numpy.poly1d(z)
     #pylab.plot(x,p(x),"r--")
-    
-    
+WL.plot.bar() 
+#WL.plot(x=['Wins','Loses'], y='Month', style='0') 
 
 #PART 3
 Data=pd.read_csv("data.txt", sep=',')
