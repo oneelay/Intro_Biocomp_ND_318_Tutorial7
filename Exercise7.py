@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy
 import re
+from collections import Counter
 
 #Set JSH WD and plot nine
 os.chdir('C:\\Users\\joshu\\OneDrive\\github\\BioComp\\Intro_Biocomp_ND_318_Tutorial7\\')
@@ -60,12 +61,31 @@ plt.show()
 #Get data, make into 2 columns
 #Read data into python
 PatsWL=pd.read_csv("data2.csv", sep='\t')
-#df=pd.DataFrame(PatsWL, columns=["Month", "WinLoss"])
+df=pd.DataFrame(PatsWL, columns=['Month', 'WinLoss'])
+df0=pd.DataFrame(data=[0,0,0])
+df0=df0.T
+df0.columns=['Month', 'Wins', 'Losses']
+frames=[df0,df]
+df=pd.concat(frames)
+#for loop to count
+for row in range(0,len(PatsWL)): 
+#if row is W, append to Wins column
+#else append to Lossses Column
+    if PatsWL.iloc[row,1] == "W":
+        df.iloc[row+1,1] = df.iloc[row,1] + PatsWL.iloc[row,2]
+        df.iloc[row+1,2] = df.iloc[row,2]
+    elif PatsWL.iloc[row,1] == "L":
+        df.iloc[row+1,2] = df.iloc[row,2] + PatsWL.iloc[row,2]
+        df.iloc[row+1,1] = df.iloc[row,1]
+plt.plot(df.Month,df.Wins,'r-',df.Month,df.Losses,'g-')        
+
+
+#df.groupby(["Month", "WinLoss"]).size
 #count=df["WinLoss"].value_counts()
 #Win = []
 #Loss = []
-PatsWL.groupby(by=[''])
-
+df['WinLoss'].value_counts()
+df['WinLoss'].value_counts().tolist()
 #df.WinLoss.str.count(substr)
 #WinLoss.str.contains(r'[W]')
 #df.WinLoss.str.contains(r'[W]')
