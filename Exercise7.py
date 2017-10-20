@@ -8,12 +8,12 @@ import re
 from collections import Counter
 
 #Set JSH WD and plot nine
-os.chdir('C:\\Users\\joshu\\OneDrive\\github\\BioComp\\Intro_Biocomp_ND_318_Tutorial7\\')
-from plotnine import *
+#os.chdir('C:\\Users\\joshu\\OneDrive\\github\\BioComp\\Intro_Biocomp_ND_318_Tutorial7\\')
+#from plotnine import *
 
 #Set Om WD and plotnine
-#os.chdir('/Users/omneelay/Desktop/Exercise7/Intro_Biocomp_ND_318_Tutorial7/')
-#!pip install plotnine
+os.chdir('/Users/omneelay/Desktop/Exercise7/Intro_Biocomp_ND_318_Tutorial7/')
+!pip install plotnine
 
 #PART 1
 
@@ -109,6 +109,12 @@ northaverage = Data.loc[Data['region'] == 'north', 'observations'].sum()/Data.lo
 southaverage = Data.loc[Data['region'] == 'south', 'observations'].sum()/Data.loc[Data['region'] == 'south', 'observations'].count()
 eastaverage = Data.loc[Data['region'] == 'east', 'observations'].sum()/Data.loc[Data['region'] == 'east', 'observations'].count()
 westaverage = Data.loc[Data['region'] == 'west', 'observations'].sum()/Data.loc[Data['region'] == 'west', 'observations'].count()
-#create barplot
-#creat scatter plot using (geom_jitter()) to show observations within the populations
+
+#barplot of average by region
+Region=['North', 'South', 'East', 'West']
+Dir=pd.DataFrame(np.array([northaverage,southaverage,eastaverage,westaverage]),columns=['AvgObservations'], index=Region)
+Dir.plot.bar()
+
+#create scatter plot using (geom_jitter()) to show observations within the populations
     
+
